@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NewsApp</string>
+    <string name="search_layout_hint_text">Поиск новостей</string>
+    <string name="label_text">Новости</string>
 </resources>

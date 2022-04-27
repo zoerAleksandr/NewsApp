@@ -1,11 +1,11 @@
 package com.example.newsapp.domain.entity
 
 enum class Category {
-    BUSINESS,
+    HEALTH,
+    SPORTS,
     ENTERTAINMENT,
     GENERAL,
-    HEALTH,
+    BUSINESS,
     SCIENCE,
-    SPORTS,
     TECHNOLOGY
 }

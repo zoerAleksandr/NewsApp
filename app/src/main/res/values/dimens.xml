@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="search_layout_margin_horizontal">16dp</dimen>
+    <dimen name="search_layout_margin_top">8dp</dimen>
+    <dimen name="search_layout_corner_radius">16dp</dimen>
+
+    <dimen name="header_text_margin_start">16dp</dimen>
+    <dimen name="header_text_margin_bottom">8dp</dimen>
+    <dimen name="margin_between_layout_category">8dp</dimen>
+    <dimen name="margin_between_items">8dp</dimen>
+
+    <dimen name="item_news_width">150dp</dimen>
+    <dimen name="item_news_height">250dp</dimen>
+    <dimen name="item_news_corner_radius">16dp</dimen>
+    <dimen name="item_news_elevation">4dp</dimen>
+    <dimen name="item_news_margin_vertical">6dp</dimen>
+    <dimen name="item_news_margin_for_title">4dp</dimen>
+    <dimen name="parent_item_padding_last_element">8dp</dimen>
+
+    <dimen name="margin_top_label_text">48dp</dimen>
+    <dimen name="app_bar_elevation">0dp</dimen>
+    <dimen name="app_bar_padding_bottom">8dp</dimen>
+</resources>
