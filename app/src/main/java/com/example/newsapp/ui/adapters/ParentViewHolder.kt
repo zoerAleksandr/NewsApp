@@ -9,9 +9,10 @@ import com.example.newsapp.domain.entity.News
 
 class ParentViewHolder(
     private val binding: ParentItemLayoutBinding,
+    private val childClickListener: (News) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(category: Category, listNews: List<News>) {
-        val childAdapter = ChildRecyclerViewAdapter(listNews)
+        val childAdapter = ChildRecyclerViewAdapter(listNews, childClickListener)
         binding.apply {
             childRecyclerView.adapter = childAdapter
             childRecyclerView.layoutManager =

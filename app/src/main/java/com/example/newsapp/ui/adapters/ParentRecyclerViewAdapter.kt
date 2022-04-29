@@ -7,8 +7,9 @@ import com.example.newsapp.databinding.ParentItemLayoutBinding
 import com.example.newsapp.domain.entity.Category
 import com.example.newsapp.domain.entity.News
 
-
-class ParentRecyclerViewAdapter :
+class ParentRecyclerViewAdapter(
+    private val childClickListener: (News) -> Unit
+) :
     RecyclerView.Adapter<ParentViewHolder>() {
     private var listCategory: MutableList<Pair<Category, List<News>>> = mutableListOf()
 
@@ -24,7 +25,7 @@ class ParentRecyclerViewAdapter :
             parent,
             false
         )
-        return ParentViewHolder(binding)
+        return ParentViewHolder(binding, childClickListener)
     }
 
     override fun onBindViewHolder(holder: ParentViewHolder, position: Int) {

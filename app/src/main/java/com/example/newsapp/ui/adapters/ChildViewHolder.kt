@@ -8,12 +8,15 @@ import com.example.newsapp.databinding.ChildItemLayoutBinding
 import com.example.newsapp.domain.entity.News
 
 class ChildViewHolder(private val binding: ChildItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
-    fun bind(news: News){
+    fun bind(news: News, listener: (News) -> Unit){
         Log.d("Debug", "ChildVH bind")
         binding.apply {
             titleTextView.text = news.title
             posterImageView.load(news.urlToImage){
                 placeholder(R.drawable.placeholder_item_news)
+            }
+            root.setOnClickListener {
+                listener.invoke(news)
             }
         }
     }

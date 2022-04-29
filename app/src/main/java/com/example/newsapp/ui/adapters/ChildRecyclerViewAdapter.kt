@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.databinding.ChildItemLayoutBinding
 import com.example.newsapp.domain.entity.News
 
-class ChildRecyclerViewAdapter(list: List<News>) :
+class ChildRecyclerViewAdapter(
+    list: List<News>,
+    private val listener: (News) -> Unit
+) :
     RecyclerView.Adapter<ChildViewHolder>() {
     private val newsList: MutableList<News> = mutableListOf()
 
@@ -24,7 +27,7 @@ class ChildRecyclerViewAdapter(list: List<News>) :
     }
 
     override fun onBindViewHolder(holder: ChildViewHolder, position: Int) {
-        holder.bind(newsList[position])
+        holder.bind(newsList[position], listener)
     }
 
     override fun getItemCount() = newsList.size
