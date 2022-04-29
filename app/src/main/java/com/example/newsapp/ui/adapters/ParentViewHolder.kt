@@ -1,6 +1,5 @@
-package com.example.newsapp.ui
+package com.example.newsapp.ui.adapters
 
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
@@ -10,11 +9,9 @@ import com.example.newsapp.domain.entity.News
 
 class ParentViewHolder(
     private val binding: ParentItemLayoutBinding,
-    private val newsList: List<News>
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(category: Category) {
-        Log.d("Debug", "ParentVH bind")
-        val childAdapter = ChildRecyclerViewAdapter(newsList)
+    fun bind(category: Category, listNews: List<News>) {
+        val childAdapter = ChildRecyclerViewAdapter(listNews)
         binding.apply {
             childRecyclerView.adapter = childAdapter
             childRecyclerView.layoutManager =
