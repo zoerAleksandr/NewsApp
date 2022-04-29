@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -73,4 +74,8 @@ dependencies {
 
     // ViewModels delegate
     implementation "androidx.fragment:fragment-ktx:1.4.1"
+
+    // Room
+    implementation 'androidx.room:room-runtime:2.4.2'
+    kapt 'androidx.room:room-compiler:2.4.2'
 }

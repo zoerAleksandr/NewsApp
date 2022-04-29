@@ -2,7 +2,7 @@ package com.example.newsapp.data.retrofit.entity
 
 import com.google.gson.annotations.SerializedName
 
-data class NewsDTO(
+data class NewsRetrofitDTO(
     @SerializedName("source") val source: SourceNewsDTO,
     @SerializedName("author") val author: String?,
     @SerializedName("title") val title: String?,
