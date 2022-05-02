@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom|end"
+        android:layout_marginTop="@dimen/item_news_margin_top_for_title"
         android:layout_marginEnd="@dimen/item_news_margin_for_title"
         android:layout_marginBottom="@dimen/item_news_margin_for_title"
         android:textColor="@color/white"

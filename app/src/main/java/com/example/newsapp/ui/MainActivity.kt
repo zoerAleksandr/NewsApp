@@ -6,7 +6,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainFragment.Controller {
     private val binding: ActivityMainBinding by viewBinding()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,5 +16,12 @@ class MainActivity : AppCompatActivity() {
                 .add(binding.root.id, MainFragment())
                 .commitNow()
         }
+    }
+
+    override fun openSearchFragment(request: Bundle) {
+        supportFragmentManager.beginTransaction()
+            .replace(binding.root.id, SearchResultFragment.newInstance(request))
+            .addToBackStack(null)
+            .commit()
     }
 }

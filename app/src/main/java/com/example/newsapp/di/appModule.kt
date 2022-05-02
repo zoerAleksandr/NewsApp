@@ -9,14 +9,17 @@ import com.example.newsapp.data.retrofit.repository.RetrofitNewsRepositoryImpl
 import com.example.newsapp.data.room.NewsDataBase
 import com.example.newsapp.domain.repository.NewsRepository
 import com.example.newsapp.domain.usecase.GetNewsByCategoryUseCase
+import com.example.newsapp.domain.usecase.GetNewsByKeyWord
 import com.example.newsapp.ui.MainViewModel
+import com.example.newsapp.ui.SearchResultViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
-    single { RetrofitClient() }
-    single<NewsRepository> { RetrofitNewsRepositoryImpl(get()) }
+    single { RetrofitClient().retrofitApi }
+    single<NewsRepository> { RetrofitNewsRepositoryImpl() }
+    single { GetNewsByKeyWord() }
     single { GetNewsByCategoryUseCase(get()) }
     single {
         Room.databaseBuilder(androidContext(), NewsDataBase::class.java, "News.db")
@@ -32,5 +35,8 @@ val appModule = module {
 
     viewModel {
         MainViewModel(get())
+    }
+    viewModel{
+        SearchResultViewModel()
     }
 }

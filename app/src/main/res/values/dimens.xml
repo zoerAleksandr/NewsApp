@@ -20,4 +20,6 @@
     <dimen name="margin_top_label_text">48dp</dimen>
     <dimen name="app_bar_elevation">0dp</dimen>
     <dimen name="app_bar_padding_bottom">8dp</dimen>
+    <dimen name="item_news_margin_top_for_title">70dp</dimen>
+    <dimen name="text_size_btn_back">16sp</dimen>
 </resources>

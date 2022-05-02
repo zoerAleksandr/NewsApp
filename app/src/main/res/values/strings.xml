@@ -4,4 +4,5 @@
     <string name="label_text">Новости</string>
 
     <string name="error_browsable">Не удалось открыть браузер</string>
+    <string name="text_btn_back">назад</string>
 </resources>

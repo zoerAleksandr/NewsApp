@@ -13,4 +13,11 @@ interface RetrofitApi {
         @Query("country") country: String,
         @Query("apiKey") apiKey: String
     ): Single<ResponseByCategoryDTO>
+
+    @GET("everything")
+    fun getNewsByKeyWord(
+        @Query("q") q: String,
+        @Query("language") language: String,
+        @Query("apiKey") apiKey: String
+    ): Single<ResponseByCategoryDTO>
 }

@@ -1,5 +1,6 @@
 package com.example.newsapp.ui
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,6 +17,12 @@ import com.example.newsapp.domain.entity.News
 import com.example.newsapp.ui.adapters.ParentRecyclerViewAdapter
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+/**
+ * Не забудь отнаследовать активити от контроллера
+ */
+
+const val KEY_NEWS = "key_news"
 
 class MainFragment : Fragment(R.layout.fragment_main) {
     private val binding: FragmentMainBinding by viewBinding()
@@ -35,6 +42,15 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (activity !is Controller) {
+            throw IllegalStateException("Activity должна наследоваться от MainFragment.Controller")
+        }
+    }
+
+    private val controller by lazy { activity as Controller }
+
     private val adapter: ParentRecyclerViewAdapter by lazy {
         ParentRecyclerViewAdapter { news ->
             showNewsInBrowser(news)
@@ -51,9 +67,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             LinearLayoutManager(requireContext(), VERTICAL, false)
         binding.parentRecyclerView.adapter = adapter
         binding.searchLayout.setStartIconOnClickListener {
-            // TODO make search news by title and by description
+            val bundle = Bundle()
+            val request = binding.searchEditText.text.toString()
+            bundle.putString(KEY_NEWS, request)
+            controller.openSearchFragment(bundle)
         }
-
     }
 
     private fun snackBarShow() {
@@ -87,5 +105,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 Log.d("Debug", "Error ${appState.throwable}")
             }
         }
+    }
+
+    interface Controller {
+        fun openSearchFragment(request: Bundle)
     }
 }

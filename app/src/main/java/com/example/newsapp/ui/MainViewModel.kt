@@ -28,7 +28,6 @@ class MainViewModel(
         executeRequest()
         return liveData
     }
-
     private fun executeRequest() {
         liveData.postValue(AppState.Loading(true))
         var currentCategory = -1
