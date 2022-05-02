@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface RetrofitApi {
     @GET("top-headlines")
     fun getNewsByCategory(
-        @Query("category") category: Category,
+        @Query("category") category: String,
         @Query("country") country: String,
         @Query("apiKey") apiKey: String
     ): Single<ResponseByCategoryDTO>

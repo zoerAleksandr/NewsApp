@@ -14,6 +14,7 @@ import com.example.newsapp.R
 import com.example.newsapp.databinding.FragmentMainBinding
 import com.example.newsapp.domain.entity.News
 import com.example.newsapp.ui.adapters.ParentRecyclerViewAdapter
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -33,6 +34,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             ).show()
         }
     }
+
     private val adapter: ParentRecyclerViewAdapter by lazy {
         ParentRecyclerViewAdapter { news ->
             showNewsInBrowser(news)
@@ -51,6 +53,14 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         binding.searchLayout.setStartIconOnClickListener {
             // TODO make search news by title and by description
         }
+
+    }
+
+    private fun snackBarShow() {
+        Snackbar.make(binding.root, "Показаны старые данные", Snackbar.LENGTH_INDEFINITE)
+            .setAction("Обновить") {
+                mainViewModel.getState()
+            }.show()
     }
 
     private fun renderData(appState: AppState) {
@@ -60,6 +70,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 adapter.setData(appState.data)
                 binding.loadingLayout.visibility = View.GONE
                 binding.parentRecyclerView.visibility = View.VISIBLE
+            }
+            is AppState.SuccessOldData -> {
+                adapter.setData(appState.data)
+                binding.loadingLayout.visibility = View.GONE
+                binding.parentRecyclerView.visibility = View.VISIBLE
+                snackBarShow()
             }
             is AppState.Loading -> {
                 Log.d("Debug", "Loading")

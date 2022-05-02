@@ -1,6 +1,9 @@
 package com.example.newsapp.di
 
 import androidx.room.Room
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.WorkManager
 import com.example.newsapp.data.retrofit.RetrofitClient
 import com.example.newsapp.data.retrofit.repository.RetrofitNewsRepositoryImpl
 import com.example.newsapp.data.room.NewsDataBase
@@ -20,8 +23,14 @@ val appModule = module {
             .build()
     }
     single { get<NewsDataBase>().newsDao() }
+    single { WorkManager.getInstance(androidContext()) }
+    single {
+        Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+    }
 
-    viewModel{
+    viewModel {
         MainViewModel(get())
     }
 }
