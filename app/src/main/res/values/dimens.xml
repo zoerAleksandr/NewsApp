@@ -22,4 +22,5 @@
     <dimen name="app_bar_padding_bottom">8dp</dimen>
     <dimen name="item_news_margin_top_for_title">70dp</dimen>
     <dimen name="text_size_btn_back">16sp</dimen>
+    <dimen name="margin_top_error_layout">32dp</dimen>
 </resources>

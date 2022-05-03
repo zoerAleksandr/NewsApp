@@ -4,5 +4,7 @@
     <string name="label_text">Новости</string>
 
     <string name="error_browsable">Не удалось открыть браузер</string>
-    <string name="text_btn_back">назад</string>
+    <string name="warning_loading_old_data">Показаны предыдущие новости \nПроверьте соединение</string>
+    <string name="action_button_warning_loading_old_data">Обновить</string>
+
 </resources>

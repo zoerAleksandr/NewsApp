@@ -38,8 +38,12 @@ class NewsByCategoriesFragment : Fragment(R.layout.fragment_news_by_categories) 
     }
 
     private fun snackBarShow() {
-        snackBar = Snackbar.make(binding.root, "Показаны старые данные", Snackbar.LENGTH_INDEFINITE)
-            .setAction("Обновить") {
+        snackBar = Snackbar.make(
+            binding.root,
+            resources.getString(R.string.warning_loading_old_data),
+            Snackbar.LENGTH_INDEFINITE
+        )
+            .setAction(resources.getString(R.string.action_button_warning_loading_old_data)) {
                 mainViewModel.getState()
             }
         snackBar?.show()
@@ -54,6 +58,7 @@ class NewsByCategoriesFragment : Fragment(R.layout.fragment_news_by_categories) 
             }
             is AppState.SuccessOldData -> {
                 adapter.setData(appState.data)
+                binding.errorLayout.visibility = View.GONE
                 binding.loadingLayout.visibility = View.GONE
                 binding.parentRecyclerView.visibility = View.VISIBLE
                 snackBarShow()
@@ -64,6 +69,8 @@ class NewsByCategoriesFragment : Fragment(R.layout.fragment_news_by_categories) 
             }
             is AppState.Error -> {
                 binding.loadingLayout.visibility = View.GONE
+                binding.errorLayout.visibility = View.VISIBLE
+                binding.errorTextView.text = appState.throwable.message
             }
         }
     }
