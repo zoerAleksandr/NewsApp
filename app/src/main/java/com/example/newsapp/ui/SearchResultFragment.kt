@@ -12,7 +12,8 @@ import com.example.newsapp.R
 import com.example.newsapp.databinding.FragmentSearchResultBinding
 import com.example.newsapp.domain.entity.News
 import com.example.newsapp.ui.adapters.SearchRecyclerViewAdapter
-import org.koin.android.ext.android.inject
+import com.google.android.material.snackbar.Snackbar
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchResultFragment : Fragment(R.layout.fragment_search_result) {
     companion object {
@@ -22,6 +23,16 @@ class SearchResultFragment : Fragment(R.layout.fragment_search_result) {
             return fragment
         }
     }
+    private var snackBar: Snackbar? = null
+    private lateinit var request: String
+
+    private fun snackBarShow() {
+        snackBar = Snackbar.make(binding.root, "Показаны старые данные", Snackbar.LENGTH_INDEFINITE)
+            .setAction("Обновить") {
+                viewModel.getData(request)
+            }
+        snackBar?.show()
+    }
 
     private val binding: FragmentSearchResultBinding by viewBinding()
     private val adapter: SearchRecyclerViewAdapter by lazy {
@@ -29,28 +40,14 @@ class SearchResultFragment : Fragment(R.layout.fragment_search_result) {
             showNewsInBrowser(news)
         }
     }
-    private val viewModel: SearchResultViewModel by inject()
-    private fun showNewsInBrowser(news: News) {
-        try {
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                addCategory(Intent.CATEGORY_BROWSABLE)
-                data = Uri.parse(news.url)
-            }
-            startActivity(intent)
-        } catch (e: Exception) {
-            Toast.makeText(
-                requireContext(),
-                resources.getString(R.string.error_browsable),
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
+    private val viewModel: SearchResultViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerView.adapter = adapter
         arguments?.getString(KEY_NEWS)?.let {
+            request = it
             viewModel.getData(it).observe(viewLifecycleOwner) { state ->
                 renderData(state)
             }
@@ -65,7 +62,7 @@ class SearchResultFragment : Fragment(R.layout.fragment_search_result) {
                 adapter.setData(appState.data.second)
             }
             is AppState.SuccessOldData -> {
-
+                snackBarShow()
             }
             is AppState.Loading -> {
                 binding.recyclerView.visibility = View.GONE
@@ -74,6 +71,27 @@ class SearchResultFragment : Fragment(R.layout.fragment_search_result) {
             is AppState.Error -> {
 
             }
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        snackBar?.takeIf { it.isShown }?.dismiss()
+    }
+
+    private fun showNewsInBrowser(news: News) {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                addCategory(Intent.CATEGORY_BROWSABLE)
+                data = Uri.parse(news.url)
+            }
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(
+                requireContext(),
+                resources.getString(R.string.error_browsable),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }
