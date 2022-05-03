@@ -3,13 +3,17 @@
 
 Дата создания проекта - 02.05.2022
 
-Проект создан для отработки практических навыков по Retrofit, RxJava3, Room, Koin, CleanArchitecture, WorkManager
+Приложение создан для отработки практических навыков по Retrofit, RxJava3, Room, Koin, CleanArchitecture, WorkManager
+Приложение реализует поиск новостей через newsapi.org по категориям, а также поиск по содержанию.
 
 Задачи: 
  - Доделать WorkManager, для автозагрузки данных после отсутствия сети (реализовано ручное обновление по кнопке на SnackBar)
  - Исправить получение данных после подключения к сети, если ранее отображались данные из Room (ParentRecyclerViewAdapter)
- - изменить место открытия SearchResultFragment (нужно чтобы появлялся под полем поиска)
- - доделать fragment_search_result.xml
+ - Изменить место открытия SearchResultFragment (нужно чтобы появлялся под полем поиска)
+ - Доделать fragment_search_result.xml
  - если возможно уменьшить разрешение изображений при загрузке для увалеичения скорости загрузки
 
+Сделал:
+ - Изменил место открытия SearchResultFragment (нужно чтобы появлялся под полем поиска) выполнено - ветка `fixed_fragment_layout_position`
+ 
 <img src = "./NewsAppGIF .gif" alt="NewsAppGIF " height="480">
