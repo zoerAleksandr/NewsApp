@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_news_height"
+    android:layout_marginHorizontal="@dimen/margin_between_items"
+    android:layout_marginVertical="@dimen/item_news_margin_vertical"
+    app:cardElevation="@dimen/item_news_elevation"
+    app:cardCornerRadius="@dimen/item_news_corner_radius">
+
+    <ImageView
+        android:id="@+id/poster_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/gradient_for_item_news" />
+
+    <TextView
+        android:id="@+id/title_text_view"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|end"
+        android:layout_marginTop="@dimen/item_news_margin_top_for_title"
+        android:layout_marginHorizontal="@dimen/item_news_margin_for_title"
+        android:layout_marginBottom="@dimen/item_news_margin_for_title"
+        android:textColor="@color/white"
+        tools:text="@tools:sample/lorem" />
+
+</androidx.cardview.widget.CardView>
