@@ -15,5 +15,6 @@
 
 Сделал:
  - Изменил место открытия SearchResultFragment (нужно чтобы появлялся под полем поиска) выполнено - ветка `fixed_fragment_layout_position`
+ - Доделать fragment_search_result.xml выполнено - ветка `fix_fragment_search_result`
  
-<img src = "./NewsAppGIF .gif" alt="NewsAppGIF " height="480">
+<img src = "./NewsAppGif.gif" alt="NewsAppGif" height="480">
