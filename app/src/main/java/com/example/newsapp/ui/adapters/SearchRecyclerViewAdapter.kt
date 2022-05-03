@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.newsapp.databinding.ChildItemLayoutBinding
-import com.example.newsapp.databinding.ParentItemLayoutBinding
-import com.example.newsapp.domain.entity.Category
+import com.example.newsapp.databinding.SearchResultItemLayoutBinding
 import com.example.newsapp.domain.entity.News
 
 class SearchRecyclerViewAdapter(
@@ -22,7 +20,7 @@ class SearchRecyclerViewAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        val binding = ChildItemLayoutBinding.inflate(
+        val binding = SearchResultItemLayoutBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

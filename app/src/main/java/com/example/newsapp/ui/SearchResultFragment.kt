@@ -23,12 +23,17 @@ class SearchResultFragment : Fragment(R.layout.fragment_search_result) {
             return fragment
         }
     }
+
     private var snackBar: Snackbar? = null
     private lateinit var request: String
 
     private fun snackBarShow() {
-        snackBar = Snackbar.make(binding.root, "Показаны старые данные", Snackbar.LENGTH_INDEFINITE)
-            .setAction("Обновить") {
+        snackBar = Snackbar.make(
+            binding.root,
+            resources.getString(R.string.warning_loading_old_data),
+            Snackbar.LENGTH_INDEFINITE
+        )
+            .setAction(resources.getString(R.string.action_button_warning_loading_old_data)) {
                 viewModel.getData(request)
             }
         snackBar?.show()
@@ -57,19 +62,27 @@ class SearchResultFragment : Fragment(R.layout.fragment_search_result) {
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Success -> {
+                binding.errorLayout.visibility = View.GONE
                 binding.recyclerView.visibility = View.VISIBLE
                 binding.progressLayout.visibility = View.GONE
                 adapter.setData(appState.data.second)
             }
             is AppState.SuccessOldData -> {
+                binding.errorLayout.visibility = View.GONE
+                binding.recyclerView.visibility = View.VISIBLE
+                binding.progressLayout.visibility = View.GONE
+                adapter.setData(appState.data.second)
                 snackBarShow()
             }
             is AppState.Loading -> {
                 binding.recyclerView.visibility = View.GONE
                 binding.progressLayout.visibility = View.VISIBLE
+                binding.errorLayout.visibility = View.GONE
             }
             is AppState.Error -> {
-
+                binding.progressLayout.visibility = View.GONE
+                binding.errorLayout.visibility = View.VISIBLE
+                binding.errorTextView.text = appState.throwable.message
             }
         }
     }
